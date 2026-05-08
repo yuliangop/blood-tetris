@@ -1,6 +1,6 @@
 class ScoreStorage {
     constructor() {
-        this.key = 'bloodTetris_highScores';
+        this.key = 'zombieTetris_highScores';
         this.maxEntries = 10;
     }
 
@@ -44,7 +44,7 @@ class ScoreStorage {
     renderHistory(element) {
         const scores = this.getScores();
         if (scores.length === 0) {
-            element.innerHTML = '<div class="history-item" style="color:#3a2020">等待献祭...</div>';
+            element.innerHTML = '<div class="history-item" style="color:#334422">等待献脑...</div>';
             return;
         }
         element.innerHTML = scores.slice(0, 7).map((s, i) => {

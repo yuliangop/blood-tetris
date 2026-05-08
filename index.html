@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>血之方块 — Blood Tetris</title>
+    <title>僵尸方块 — Zombie Tetris</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -29,17 +29,17 @@
 
         <div class="game-main">
             <div class="game-header">
-                <h1 class="title">血 之 方 块</h1>
-                <span class="subtitle">BLOOD TETRIS</span>
+                <h1 class="title">僵 尸 方 块</h1>
+                <span class="subtitle">ZOMBIE TETRIS</span>
             </div>
             <div class="canvas-wrapper">
                 <canvas id="gameCanvas"></canvas>
                 <div class="game-over-overlay" id="gameOverOverlay">
                     <div class="game-over-content">
-                        <h2 class="game-over-title">永 堕 黑 暗</h2>
+                        <h2 class="game-over-title">被 吃 掉 了</h2>
                         <p class="game-over-score">最终得分: <span id="finalScore">0</span></p>
-                        <p class="new-record" id="newRecord">🩸 新纪录!</p>
-                        <button class="restart-btn" id="restartBtn">再 次 献 祭</button>
+                        <p class="new-record" id="newRecord">🧟 新纪录!</p>
+                        <button class="restart-btn" id="restartBtn">再 次 复 活</button>
                     </div>
                 </div>
                 <div class="pause-overlay" id="pauseOverlay">
@@ -70,7 +70,7 @@
         </div>
     </div>
 
-    <div class="blood-drips" id="bloodDrips"></div>
+    <div class="fog-particles" id="fogParticles"></div>
 
     <script src="js/audio.js"></script>
     <script src="js/storage.js"></script>

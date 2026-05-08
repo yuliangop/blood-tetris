@@ -179,7 +179,7 @@ class GameBoard {
 
         // Score popup
         if (this.currentPiece) {
-            const popupTexts = { 1: '血祭', 2: '双杀', 3: '三杀', 4: '湮灭!' };
+            const popupTexts = { 1: '吃脑', 2: '双杀', 3: '三杀', 4: '团灭!' };
             this.renderer.addScorePopup(
                 popupTexts[linesCleared],
                 Math.floor(this.cols / 2),
@@ -371,14 +371,18 @@ class GameBoard {
             const test = { ...this.currentPiece, row: this.currentPiece.row + 1 };
             if (this.isValidPosition(test)) {
                 this.currentPiece.row = test.row;
-                this.lockDelay = 0;
-            } else {
-                this.lockDelay++;
-                if (this.lockDelay >= this.lockDelayMax) {
-                    this.lockPiece();
-                    this.lockDelay = 0;
-                }
             }
+        }
+
+        // Lock delay: check every frame when piece is on the ground
+        if (!this.isValidPosition({ ...this.currentPiece, row: this.currentPiece.row + 1 })) {
+            this.lockDelay++;
+            if (this.lockDelay >= this.lockDelayMax) {
+                this.lockPiece();
+                this.lockDelay = 0;
+            }
+        } else {
+            this.lockDelay = 0;
         }
     }
 

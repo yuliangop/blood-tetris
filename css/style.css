@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&family=Noto+Sans+SC:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Noto+Sans+SC:wght@400;700;900&display=swap');
 
 * {
     margin: 0;
@@ -7,19 +7,20 @@
 }
 
 :root {
-    --blood: #8b0000;
-    --blood-bright: #cc0000;
-    --blood-dark: #3a0000;
-    --blood-glow: #ff2020;
-    --bone: #c4b5a0;
-    --shadow: #1a0000;
-    --void: #050505;
-    --text: #c0a0a0;
+    --zombie: #4a6b2a;
+    --zombie-bright: #7aaa30;
+    --zombie-dark: #1a2a0a;
+    --zombie-glow: #88cc44;
+    --bone: #c4b8a0;
+    --shadow: #0a1005;
+    --void: #050805;
+    --text: #b0b8a0;
     --gold: #8b7500;
+    --purple: #553366;
 }
 
 body {
-    background: radial-gradient(ellipse at center, #0d0000 0%, #050000 50%, #000000 100%);
+    background: radial-gradient(ellipse at center, #0d1008 0%, #050a03 50%, #000200 100%);
     color: var(--text);
     font-family: 'Noto Sans SC', sans-serif;
     height: 100vh;
@@ -36,15 +37,15 @@ body::before {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background:
-        radial-gradient(circle at 30% 20%, rgba(139,0,0,0.08) 0%, transparent 50%),
-        radial-gradient(circle at 70% 80%, rgba(139,0,0,0.06) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(100,0,0,0.04) 0%, transparent 70%);
+        radial-gradient(circle at 30% 20%, rgba(74,107,42,0.06) 0%, transparent 50%),
+        radial-gradient(circle at 70% 80%, rgba(100,140,50,0.05) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(60,90,30,0.04) 0%, transparent 70%);
     pointer-events: none;
-    animation: ambientPulse 4s ease-in-out infinite;
+    animation: fogPulse 6s ease-in-out infinite;
 }
 
-@keyframes ambientPulse {
-    0%, 100% { opacity: 0.8; }
+@keyframes fogPulse {
+    0%, 100% { opacity: 0.7; }
     50% { opacity: 1; }
 }
 
@@ -65,13 +66,13 @@ body::before {
 }
 
 .panel-box {
-    background: linear-gradient(180deg, rgba(30,5,5,0.95) 0%, rgba(15,0,0,0.98) 100%);
-    border: 1px solid rgba(139,0,0,0.4);
+    background: linear-gradient(180deg, rgba(20,25,10,0.95) 0%, rgba(10,15,5,0.98) 100%);
+    border: 1px solid rgba(74,107,42,0.4);
     border-radius: 6px;
     padding: 12px;
     box-shadow:
-        0 0 15px rgba(139,0,0,0.15),
-        inset 0 1px 0 rgba(255,255,255,0.02);
+        0 0 15px rgba(74,107,42,0.12),
+        inset 0 1px 0 rgba(255,255,255,0.01);
     position: relative;
     overflow: hidden;
 }
@@ -81,27 +82,27 @@ body::before {
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(200,0,0,0.3), transparent);
+    background: linear-gradient(90deg, transparent, rgba(120,170,60,0.25), transparent);
 }
 
 .panel-box h3 {
-    font-family: 'MedievalSharp', 'Noto Sans SC', cursive;
-    font-size: 13px;
-    color: #8b0000;
+    font-family: 'Creepster', 'Noto Sans SC', cursive;
+    font-size: 14px;
+    color: #6a8a3a;
     text-align: center;
     letter-spacing: 4px;
     margin-bottom: 8px;
-    text-shadow: 0 0 8px rgba(200,0,0,0.4);
+    text-shadow: 0 0 8px rgba(100,160,40,0.4);
 }
 
 .score-value, .level-value, .lines-value {
-    font-family: 'MedievalSharp', monospace;
+    font-family: 'Creepster', monospace;
     font-size: 28px;
-    color: #ff3030;
+    color: #88cc44;
     text-align: center;
     text-shadow:
-        0 0 10px rgba(255,48,48,0.6),
-        0 0 20px rgba(255,48,48,0.3);
+        0 0 10px rgba(120,200,60,0.5),
+        0 0 20px rgba(120,200,60,0.25);
     font-weight: bold;
 }
 
@@ -122,21 +123,21 @@ canvas {
 }
 
 .title {
-    font-family: 'MedievalSharp', 'Noto Sans SC', cursive;
+    font-family: 'Creepster', 'Noto Sans SC', cursive;
     font-size: 36px;
-    background: linear-gradient(180deg, #ff2020 0%, #8b0000 50%, #3a0000 100%);
+    background: linear-gradient(180deg, #aacc55 0%, #668833 50%, #334418 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     letter-spacing: 8px;
     text-shadow: none;
-    filter: drop-shadow(0 0 15px rgba(200,0,0,0.5));
+    filter: drop-shadow(0 0 15px rgba(120,170,60,0.5));
 }
 
 .subtitle {
-    font-family: 'MedievalSharp', cursive;
+    font-family: 'Creepster', cursive;
     font-size: 12px;
-    color: #5a0000;
+    color: #445522;
     letter-spacing: 5px;
     display: block;
     margin-top: -5px;
@@ -144,18 +145,18 @@ canvas {
 
 .canvas-wrapper {
     position: relative;
-    border: 2px solid rgba(139,0,0,0.5);
+    border: 2px solid rgba(74,107,42,0.5);
     border-radius: 4px;
     box-shadow:
-        0 0 30px rgba(139,0,0,0.3),
-        0 0 60px rgba(139,0,0,0.1),
+        0 0 30px rgba(74,107,42,0.2),
+        0 0 60px rgba(74,107,42,0.08),
         inset 0 0 30px rgba(0,0,0,0.5);
     overflow: hidden;
 }
 
 #gameCanvas {
     display: block;
-    background: #080404;
+    background: #060804;
 }
 
 .game-over-overlay, .pause-overlay {
@@ -173,7 +174,7 @@ canvas {
 .game-over-overlay.active {
     opacity: 1;
     pointer-events: all;
-    background: radial-gradient(ellipse at center, rgba(100,0,0,0.85) 0%, rgba(0,0,0,0.95) 100%);
+    background: radial-gradient(ellipse at center, rgba(30,50,10,0.85) 0%, rgba(0,0,0,0.95) 100%);
     animation: overlayFadeIn 0.5s ease-out;
 }
 
@@ -188,28 +189,28 @@ canvas {
 }
 
 .game-over-title {
-    font-family: 'MedievalSharp', cursive;
+    font-family: 'Creepster', cursive;
     font-size: 40px;
-    color: #ff2020;
-    text-shadow: 0 0 20px #ff0000, 0 0 40px #8b0000;
+    color: #99cc33;
+    text-shadow: 0 0 20px #669922, 0 0 40px #335511;
     letter-spacing: 6px;
     animation: titlePulse 1.5s ease-in-out infinite;
 }
 
 @keyframes titlePulse {
-    0%, 100% { text-shadow: 0 0 20px #ff0000, 0 0 40px #8b0000; }
-    50% { text-shadow: 0 0 40px #ff0000, 0 0 80px #8b0000, 0 0 120px #ff0000; }
+    0%, 100% { text-shadow: 0 0 20px #669922, 0 0 40px #335511; }
+    50% { text-shadow: 0 0 40px #88bb44, 0 0 80px #446622, 0 0 120px #669922; }
 }
 
 .game-over-score {
     font-size: 18px;
-    color: #c0a0a0;
+    color: #b0b8a0;
     margin: 10px 0;
 }
 
 .new-record {
     font-size: 20px;
-    color: #ff3030;
+    color: #aacc55;
     margin: 8px 0;
     display: none;
     animation: recordFlash 0.5s ease-in-out infinite alternate;
@@ -225,34 +226,34 @@ canvas {
 .restart-btn {
     margin-top: 15px;
     padding: 12px 32px;
-    background: linear-gradient(180deg, #8b0000 0%, #3a0000 100%);
-    border: 1px solid #ff2020;
-    color: #ffc0c0;
-    font-family: 'MedievalSharp', 'Noto Sans SC', cursive;
+    background: linear-gradient(180deg, #446622 0%, #223310 100%);
+    border: 1px solid #88cc44;
+    color: #cce0a0;
+    font-family: 'Creepster', 'Noto Sans SC', cursive;
     font-size: 18px;
     cursor: pointer;
     letter-spacing: 3px;
     border-radius: 4px;
     transition: all 0.3s;
-    text-shadow: 0 0 5px rgba(255,0,0,0.5);
+    text-shadow: 0 0 5px rgba(120,180,40,0.5);
 }
 
 .restart-btn:hover {
-    background: linear-gradient(180deg, #cc0000 0%, #5a0000 100%);
-    box-shadow: 0 0 20px rgba(255,0,0,0.4);
+    background: linear-gradient(180deg, #557733 0%, #334418 100%);
+    box-shadow: 0 0 20px rgba(120,180,40,0.3);
     transform: scale(1.05);
 }
 
 .pause-overlay h2 {
-    font-family: 'MedievalSharp', cursive;
+    font-family: 'Creepster', cursive;
     font-size: 36px;
-    color: #8b0000;
-    text-shadow: 0 0 15px rgba(139,0,0,0.5);
+    color: #6a8a3a;
+    text-shadow: 0 0 15px rgba(100,140,40,0.4);
     letter-spacing: 8px;
 }
 
 .pause-overlay p {
-    color: #5a3030;
+    color: #445522;
     margin-top: 10px;
     font-size: 14px;
 }
@@ -272,7 +273,7 @@ canvas {
 }
 
 .history-list::-webkit-scrollbar-thumb {
-    background: rgba(139,0,0,0.5);
+    background: rgba(74,107,42,0.4);
     border-radius: 2px;
 }
 
@@ -280,8 +281,8 @@ canvas {
     display: flex;
     justify-content: space-between;
     padding: 4px 0;
-    border-bottom: 1px solid rgba(139,0,0,0.1);
-    color: #8a7070;
+    border-bottom: 1px solid rgba(74,107,42,0.1);
+    color: #889070;
     font-size: 11px;
 }
 
@@ -291,7 +292,7 @@ canvas {
 
 .control-item {
     font-size: 11px;
-    color: #6a4040;
+    color: #556840;
     padding: 2px 0;
     display: flex;
     justify-content: space-between;
@@ -299,36 +300,39 @@ canvas {
 }
 
 .control-item kbd {
-    background: rgba(139,0,0,0.3);
-    border: 1px solid rgba(139,0,0,0.5);
+    background: rgba(74,107,42,0.25);
+    border: 1px solid rgba(74,107,42,0.4);
     padding: 1px 6px;
     border-radius: 3px;
     font-size: 10px;
-    color: #c08080;
+    color: #a0bb80;
     font-family: monospace;
 }
 
-.blood-drips {
+/* Fog particles instead of blood drips */
+.fog-particles {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     pointer-events: none;
     z-index: 100;
 }
 
-.blood-drop {
+.fog-drop {
     position: absolute;
-    top: -20px;
-    width: 3px;
-    background: linear-gradient(180deg, #8b0000, #ff2020, transparent);
-    animation: dripFall linear forwards;
+    bottom: -10px;
+    width: 60px;
+    height: 20px;
+    background: radial-gradient(ellipse, rgba(100,140,50,0.12) 0%, transparent 70%);
+    animation: fogRise linear forwards;
     opacity: 0;
+    border-radius: 50%;
 }
 
-@keyframes dripFall {
-    0% { opacity: 0; transform: translateY(0); }
-    5% { opacity: 0.7; }
-    95% { opacity: 0.5; }
-    100% { opacity: 0; transform: translateY(105vh); }
+@keyframes fogRise {
+    0% { opacity: 0; transform: translateY(0) scale(1); }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.3; }
+    100% { opacity: 0; transform: translateY(-105vh) scale(3); }
 }
 
 @media (max-width: 900px) {

@@ -26,12 +26,11 @@ class Renderer {
 
     drawBackground() {
         const ctx = this.ctx;
-        // Main background
-        ctx.fillStyle = '#0a0404';
+        ctx.fillStyle = '#060804';
         ctx.fillRect(0, 0, this.boardWidth, this.boardHeight);
 
-        // Grid lines
-        ctx.strokeStyle = 'rgba(60,15,15,0.5)';
+        // Grid lines — graveyard earth tones
+        ctx.strokeStyle = 'rgba(40,50,20,0.4)';
         ctx.lineWidth = 0.5;
         for (let x = 0; x <= this.cols; x++) {
             ctx.beginPath();
@@ -46,10 +45,10 @@ class Renderer {
             ctx.stroke();
         }
 
-        // Subtle red glow at bottom
+        // Subtle green glow at bottom (graveyard mist)
         const gradient = ctx.createLinearGradient(0, this.boardHeight - 40, 0, this.boardHeight);
         gradient.addColorStop(0, 'transparent');
-        gradient.addColorStop(1, 'rgba(139,0,0,0.08)');
+        gradient.addColorStop(1, 'rgba(74,107,42,0.06)');
         ctx.fillStyle = gradient;
         ctx.fillRect(0, this.boardHeight - 40, this.boardWidth, 40);
     }
@@ -174,14 +173,14 @@ class Renderer {
             const y = anim.row * this.cellSize;
             const s = this.cellSize;
 
-            // Flash white then fade to blood
+            // Flash white then fade to toxic green
             if (progress < 0.3) {
                 const alpha = progress / 0.3;
                 this.ctx.fillStyle = `rgba(255,255,255,${alpha * 0.8})`;
                 this.ctx.fillRect(0, y, this.boardWidth, s);
             } else if (progress < 0.7) {
                 const alpha = 1 - (progress - 0.3) / 0.4;
-                this.ctx.fillStyle = `rgba(200,0,0,${alpha * 0.7})`;
+                this.ctx.fillStyle = `rgba(120,180,40,${alpha * 0.7})`;
                 this.ctx.fillRect(0, y, this.boardWidth, s);
             }
         }

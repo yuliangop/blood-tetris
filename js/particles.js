@@ -11,23 +11,23 @@ class Particle {
         this.vx = Math.cos(angle) * speed;
         this.vy = Math.sin(angle) * speed - 2;
 
-        if (type === 'blood') {
+        if (type === 'toxic') {
             this.size = 2 + Math.random() * 4;
-            this.color = Math.random() < 0.5 ? '#cc0000' : '#8b0000';
+            this.color = Math.random() < 0.5 ? '#88cc44' : '#557722';
             this.vy -= 3;
         } else if (type === 'spark') {
             this.size = 1 + Math.random() * 2;
-            this.color = Math.random() < 0.5 ? '#ff4444' : '#ffaa00';
+            this.color = Math.random() < 0.5 ? '#aacc55' : '#ffaa00';
             this.vx *= 2;
             this.vy *= 2;
             this.decay = 0.02 + Math.random() * 0.04;
         } else if (type === 'bone') {
             this.size = 1 + Math.random() * 2;
-            this.color = '#c4b5a0';
+            this.color = '#c4b8a0';
             this.vy -= 2;
-        } else if (type === 'dark') {
+        } else if (type === 'fog') {
             this.size = 0.5 + Math.random() * 1.5;
-            this.color = '#220000';
+            this.color = '#1a2a0a';
             this.vy = -0.5 - Math.random();
             this.vx *= 0.3;
             this.decay = 0.003 + Math.random() * 0.005;
@@ -37,8 +37,8 @@ class Particle {
     update() {
         this.x += this.vx;
         this.y += this.vy;
-        if (this.type !== 'dark') {
-            this.vy += 0.15; // gravity
+        if (this.type !== 'fog') {
+            this.vy += 0.15;
         }
         this.life -= this.decay;
     }
@@ -70,14 +70,13 @@ class ParticleSystem {
     }
 
     emitLineClear(rowY, boardWidth, boardX, cellSize) {
-        // Blood sprays upward from the cleared line
+        // Toxic green goo sprays upward from cleared line
         const y = rowY + cellSize / 2;
         const count = Math.floor(boardWidth / cellSize) * 3;
         for (let i = 0; i < count; i++) {
             const x = boardX + Math.random() * boardWidth;
-            this.particles.push(new Particle(x, y, 'blood'));
+            this.particles.push(new Particle(x, y, 'toxic'));
         }
-        // Sparks
         for (let i = 0; i < count / 2; i++) {
             const x = boardX + Math.random() * boardWidth;
             this.particles.push(new Particle(x, y, 'spark'));
@@ -90,11 +89,11 @@ class ParticleSystem {
             return !p.isDead();
         });
 
-        // Ambient dark particles (always floating up in background)
+        // Ambient fog particles drifting upward (graveyard mist)
         if (this.ambientParticles.length < 15 && Math.random() < 0.3) {
             this.ambientParticles.push(new Particle(
                 Math.random() * 800, 700,
-                'dark'
+                'fog'
             ));
         }
         this.ambientParticles = this.ambientParticles.filter(p => {
@@ -104,7 +103,6 @@ class ParticleSystem {
     }
 
     draw(ctx) {
-        // Draw ambient particles first (behind everything)
         this.ambientParticles.forEach(p => p.draw(ctx));
         this.particles.forEach(p => p.draw(ctx));
     }

@@ -1,4 +1,4 @@
-class BloodTetris {
+class ZombieTetris {
     constructor() {
         this.renderer = new Renderer(
             document.getElementById('gameCanvas'),
@@ -110,22 +110,22 @@ class BloodTetris {
         storage.renderHistory(document.getElementById('historyList'));
         audio.play('gameover');
 
-        // Blood drips effect
-        this.spawnBloodDrips();
+        // Fog particles effect
+        this.spawnFogParticles();
     }
 
-    spawnBloodDrips() {
-        const container = document.getElementById('bloodDrips');
+    spawnFogParticles() {
+        const container = document.getElementById('fogParticles');
         for (let i = 0; i < 12; i++) {
             setTimeout(() => {
                 const drop = document.createElement('div');
-                drop.className = 'blood-drop';
+                drop.className = 'fog-drop';
                 drop.style.left = Math.random() * 100 + '%';
-                drop.style.animationDuration = (2 + Math.random() * 3) + 's';
-                drop.style.width = (1 + Math.random() * 4) + 'px';
+                drop.style.animationDuration = (3 + Math.random() * 5) + 's';
+                drop.style.width = (40 + Math.random() * 80) + 'px';
                 container.appendChild(drop);
-                setTimeout(() => drop.remove(), 4000);
-            }, i * 200);
+                setTimeout(() => drop.remove(), 6000);
+            }, i * 250);
         }
     }
 
@@ -194,6 +194,6 @@ class BloodTetris {
 
 // Start the game when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
-    const game = new BloodTetris();
+    const game = new ZombieTetris();
     game.run();
 });
