@@ -112,10 +112,10 @@ class Renderer {
         }
     }
 
-    drawGhostPiece(piece, ghostRow, board) {
+    drawGhostPiece(piece, ghostRow) {
         if (!piece || ghostRow === null) return;
         const p = PIECE_TYPES[piece.type];
-        const shape = p.shape;
+        const shape = piece.getShape();
 
         for (let r = 0; r < shape.length; r++) {
             for (let c = 0; c < shape[r].length; c++) {
@@ -143,7 +143,7 @@ class Renderer {
     drawActivePiece(piece) {
         if (!piece) return;
         const p = PIECE_TYPES[piece.type];
-        const shape = p.shape;
+        const shape = piece.getShape();
 
         for (let r = 0; r < shape.length; r++) {
             for (let c = 0; c < shape[r].length; c++) {
