@@ -2,23 +2,19 @@
   "name": "zombie-tetris",
   "version": "1.0.0",
   "description": "僵尸方块 — Zombie Tetris 桌面游戏",
+  "author": "于亮",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "build": "electron-builder --win portable"
   },
+  "appId": "com.yuliang.zombie-tetris",
+  "productName": "僵尸方块",
+  "win": {
+    "target": "portable"
+  },
   "build": {
-    "appId": "com.yuliang.zombie-tetris",
-    "productName": "僵尸方块",
-    "directories": { "output": "dist" },
-    "win": {
-      "target": "portable",
-      "icon": "icon.ico"
-    },
-    "files": [
-      "**/*",
-      "!dist/**"
-    ]
+    "directories": { "output": "dist" }
   },
   "devDependencies": {
     "electron": "^28.0.0",
