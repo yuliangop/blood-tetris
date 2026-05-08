@@ -60,7 +60,7 @@ class GameBoard {
     }
 
     isValidPosition(piece) {
-        const shape = piece.getShape();
+        const shape = this.getShapeForRotation(piece);
         for (let r = 0; r < shape.length; r++) {
             for (let c = 0; c < shape[r].length; c++) {
                 if (shape[r][c]) {
@@ -380,7 +380,6 @@ class GameBoard {
                 }
             }
         }
-    }
     }
 
     render() {
