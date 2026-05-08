@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>血之方块 — Blood Tetris</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="side-panel left-panel">
+            <div class="panel-box hold-box">
+                <h3>持 有</h3>
+                <canvas id="holdCanvas" width="120" height="100"></canvas>
+            </div>
+            <div class="panel-box score-box">
+                <h3>分 数</h3>
+                <div class="score-value" id="score">0</div>
+            </div>
+            <div class="panel-box level-box">
+                <h3>等 级</h3>
+                <div class="level-value" id="level">1</div>
+            </div>
+            <div class="panel-box lines-box">
+                <h3>消除行数</h3>
+                <div class="lines-value" id="lines">0</div>
+            </div>
+        </div>
+
+        <div class="game-main">
+            <div class="game-header">
+                <h1 class="title">血 之 方 块</h1>
+                <span class="subtitle">BLOOD TETRIS</span>
+            </div>
+            <div class="canvas-wrapper">
+                <canvas id="gameCanvas"></canvas>
+                <div class="game-over-overlay" id="gameOverOverlay">
+                    <div class="game-over-content">
+                        <h2 class="game-over-title">永 堕 黑 暗</h2>
+                        <p class="game-over-score">最终得分: <span id="finalScore">0</span></p>
+                        <p class="new-record" id="newRecord">🩸 新纪录!</p>
+                        <button class="restart-btn" id="restartBtn">再 次 献 祭</button>
+                    </div>
+                </div>
+                <div class="pause-overlay" id="pauseOverlay">
+                    <h2>暂 停</h2>
+                    <p>按 P 继续</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="side-panel right-panel">
+            <div class="panel-box next-box">
+                <h3>预 览</h3>
+                <canvas id="nextCanvas" width="120" height="100"></canvas>
+            </div>
+            <div class="panel-box history-box">
+                <h3>历史最高分</h3>
+                <div class="history-list" id="historyList"></div>
+            </div>
+            <div class="panel-box controls-box">
+                <h3>操 作</h3>
+                <div class="control-item"><kbd>← →</kbd> 移动</div>
+                <div class="control-item"><kbd>↑</kbd> 旋转</div>
+                <div class="control-item"><kbd>↓</kbd> 软降</div>
+                <div class="control-item"><kbd>空格</kbd> 硬降</div>
+                <div class="control-item"><kbd>C</kbd> 持有</div>
+                <div class="control-item"><kbd>P</kbd> 暂停</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="blood-drips" id="bloodDrips"></div>
+
+    <script src="js/audio.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/pieces.js"></script>
+    <script src="js/particles.js"></script>
+    <script src="js/renderer.js"></script>
+    <script src="js/board.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
